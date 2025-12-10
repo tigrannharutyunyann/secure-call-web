@@ -117,6 +117,61 @@ const resources = {
       footer: {
         text: "Secure Call is a concept project exploring transparent, user-controlled encryption for voice calls.",
       },
+      contacts: {
+        empty: {
+          title: "Start a secure call",
+          subtitle: "Select a contact on the left to see trust status and start an encrypted session.",
+        },
+        badges: {
+          e2e: "E2E secured",
+          device: "Device-locked keys",
+          transparency: "Session transparency",
+        },
+        actions: {
+          startCall: "Start call",
+          viewSecurity: "View security",
+          verifyKeys: "Verify keys",
+        },
+        session: {
+          details: "Session details",
+          desc: "End-to-end encrypted audio with per-device keys. Session transparency warns about key changes or new devices.",
+          fingerprint: "Key fingerprint: {{fingerprint}}",
+          keyFingerprints: "Key fingerprints",
+          myFingerprint: "My key fingerprint",
+          contactFingerprint: "Contact’s fingerprint",
+        },
+        audio: {
+          title: "Audio setup",
+          microphone: "Microphone",
+          speaker: "Speaker output",
+          noInputs: "No inputs found",
+          noOutputs: "No outputs found",
+          test: "Test audio",
+        },
+        lastCalls: {
+          title: "Last calls",
+          view: "View",
+        },
+        calls: {
+          outgoing: "Outgoing call",
+          incoming: "Incoming call",
+          missed: "Missed call",
+          todayTime: "Today, {{time}}",
+          yesterdayTime: "Yesterday, {{time}}",
+          weekdayTime: "{{weekday}}, {{time}}",
+        },
+      },
+      settings: {
+        appearance: {
+          title: "Appearance",
+          theme: "Theme",
+          currentTheme: "Current theme: {{theme}}",
+          dark: "Dark",
+          light: "Light",
+          language: "Language",
+          languageDesc: "Switch interface language.",
+        },
+      },
     },
   },
   ru: {
@@ -125,7 +180,7 @@ const resources = {
         about: "О проекте",
         download: "Скачать",
         signIn: "Войти",
-        getStarted: "Начать",
+        getStarted: "Регистрация",
       },
       hero: {
         tagline: "Платформа защищенных звонков",
@@ -233,6 +288,61 @@ const resources = {
       },
       footer: {
         text: "Secure Call — концепт-проект, исследующий прозрачное, контролируемое пользователем шифрование голосовых звонков.",
+      },
+      contacts: {
+        empty: {
+          title: "Начните защищённый звонок",
+          subtitle: "Выберите контакт слева, чтобы увидеть статус доверия и начать шифрованную сессию.",
+        },
+        badges: {
+          e2e: "E2E защищено",
+          device: "Ключи привязаны к устройствам",
+          transparency: "Прозрачность сессии",
+        },
+        actions: {
+          startCall: "Начать звонок",
+          viewSecurity: "Безопасность",
+          verifyKeys: "Проверить ключи",
+        },
+        session: {
+          details: "Детали сессии",
+          desc: "Сквозное шифрование звука с ключами на устройствах. Прозрачность сессии предупреждает о смене ключей или новых устройствах.",
+          fingerprint: "Отпечаток ключа: {{fingerprint}}",
+          keyFingerprints: "Отпечатки ключей",
+          myFingerprint: "Мой отпечаток ключа",
+          contactFingerprint: "Отпечаток ключа контакта",
+        },
+        audio: {
+          title: "Аудио-настройки",
+          microphone: "Микрофон",
+          speaker: "Динамик",
+          noInputs: "Нет входов",
+          noOutputs: "Нет выходов",
+          test: "Проверить звук",
+        },
+        lastCalls: {
+          title: "Последние звонки",
+          view: "Открыть",
+        },
+        calls: {
+          outgoing: "Исходящий звонок",
+          incoming: "Входящий звонок",
+          missed: "Пропущенный звонок",
+          todayTime: "Сегодня, {{time}}",
+          yesterdayTime: "Вчера, {{time}}",
+          weekdayTime: "{{weekday}}, {{time}}",
+        },
+      },
+      settings: {
+        appearance: {
+          title: "Оформление",
+          theme: "Тема",
+          currentTheme: "Текущая тема: {{theme}}",
+          dark: "Тёмная",
+          light: "Светлая",
+          language: "Язык",
+          languageDesc: "Переключить язык интерфейса.",
+        },
       },
     },
   },
@@ -350,6 +460,61 @@ const resources = {
       },
       footer: {
         text: "Secure Call-ը կոնցեպտ նախագիծ է, որը ուսումնասիրում է թափանցիկ, օգտագործողի կողմից վերահսկվող կոդավորումը ձայնային զանգերի համար։",
+      },
+      contacts: {
+        empty: {
+          title: "Սկսեք ապահով զանգ",
+          subtitle: "Ընտրեք կոնտակտ ձախ կողմում՝ տեսնելու վստահության կարգավիճակը և սկսելու կոդավորված սեսիա։",
+        },
+        badges: {
+          e2e: "E2E պաշտպանված",
+          device: "Բանալիները սարքերին վերապահված են",
+          transparency: "Սեսիայի թափանցիկություն",
+        },
+        actions: {
+          startCall: "Սկսել զանգը",
+          viewSecurity: "Անվտանգություն",
+          verifyKeys: "Ստուգել բանալիները",
+        },
+        session: {
+          details: "Սեսիայի մանրամասներ",
+          desc: "Վերջից-վերջ կոդավորված աուդիո սարքերին վերապահված բանալիներով։ Սեսիայի թափանցիկությունը զգուշացնում է բանալիների փոփոխությունների կամ նոր սարքերի մասին։",
+          fingerprint: "Բանալու մատնահետք՝ {{fingerprint}}",
+          keyFingerprints: "Բանալիների մատնահետք",
+          myFingerprint: "Իմ բանալիի մատնահետք",
+          contactFingerprint: "Կոնտակտի բանալիի մատնահետք",
+        },
+        audio: {
+          title: "Աուդիո կարգավորումներ",
+          microphone: "Միկրոֆոն",
+          speaker: "Բարձրախոս",
+          noInputs: "Մուտքեր չեն գտնվել",
+          noOutputs: "Ելքեր չեն գտնվել",
+          test: "Ստուգել ձայնը",
+        },
+        lastCalls: {
+          title: "Վերջին զանգերը",
+          view: "Դիտել",
+        },
+        calls: {
+          outgoing: "Ելքային զանգ",
+          incoming: "Մուտքային զանգ",
+          missed: "Չպատասխանած զանգ",
+          todayTime: "Այսօր, {{time}}",
+          yesterdayTime: "Երեկ, {{time}}",
+          weekdayTime: "{{weekday}}, {{time}}",
+        },
+      },
+      settings: {
+        appearance: {
+          title: "Տեսք",
+          theme: "Թեմա",
+          currentTheme: "Ընթացիկ թեմա․ {{theme}}",
+          dark: "Մուգ",
+          light: "Լուսավոր",
+          language: "Լեզու",
+          languageDesc: "Փոխեք ինտերֆեյսի լեզուն։",
+        },
       },
     },
   },

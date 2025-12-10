@@ -24,15 +24,21 @@ type ThemeProviderProps = {
 const storageKey = "secure-call-theme";
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const getInitialTheme = () => {
+    const stored = localStorage.getItem(storageKey) as Theme | null;
+    if (stored === "light" || stored === "dark") return stored;
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    return prefersDark ? "dark" : "light";
+  };
+
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     const root = document.documentElement;
     const body = document.body;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
-    body.classList.remove(theme === "dark" ? "light" : "dark");
-    root.classList.add(theme);
-    body.classList.add(theme);
+    root.classList.toggle("dark", theme === "dark");
+    body.classList.toggle("dark", theme === "dark");
+    root.style.colorScheme = theme === "dark" ? "dark" : "light";
     localStorage.setItem(storageKey, theme);
   }, [theme]);
 
@@ -41,7 +47,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState("dark");
+    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
   }, []);
 
   const value = useMemo(

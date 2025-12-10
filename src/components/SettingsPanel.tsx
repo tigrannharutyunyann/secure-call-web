@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "../theme/ThemeContext";
 import { deviceSessions, type DeviceSession } from "../mock/devices";
@@ -36,6 +37,7 @@ const encryptionOptions = [
 ];
 
 export default function SettingsPanel() {
+  const { t, i18n } = useTranslation();
   const [name, setName] = useState("Secure Caller");
   const [email, setEmail] = useState("user@example.com");
   const [status, setStatus] = useState("Available");
@@ -65,10 +67,20 @@ export default function SettingsPanel() {
   const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const [language, setLanguage] = useState<string>(i18n.resolvedLanguage || i18n.language || "en");
   const audioRef = useRef<HTMLAudioElement>(null);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const toggleMic = () => setIsMicOpen((prev) => !prev);
   const toggleSpeaker = () => setIsSpeakerOpen((prev) => !prev);
+
+  const languageOptions = useMemo(
+    () => [
+      { code: "en", label: "English" },
+      { code: "ru", label: "Русский" },
+      { code: "hy", label: "Հայերեն" },
+    ],
+    []
+  );
 
   useEffect(() => {
     localStorage.setItem("secure-call-call-sounds", String(callSounds));
@@ -132,6 +144,11 @@ export default function SettingsPanel() {
       return () => clearTimeout(t);
     }
   }, [toast]);
+
+  const handleLanguageChange = (code: string) => {
+    setLanguage(code);
+    i18n.changeLanguage(code).catch(() => {});
+  };
 
   const selectedDevice = useMemo(
     () => devices.find((d) => d.id === selectedDeviceId) || null,
@@ -295,28 +312,35 @@ export default function SettingsPanel() {
         </div>
 
         <div className="panel p-6">
-          <h2 className="text-xl font-semibold mb-4">Appearance</h2>
+          <h2 className="text-xl font-semibold mb-4">{t("settings.appearance.title")}</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium">Theme</p>
+                <p className="font-medium">{t("settings.appearance.theme")}</p>
                 <p className="text-sm text-muted">
-                  Current theme: {theme === "dark" ? "Dark" : "Light"}
+                  {t("settings.appearance.currentTheme", {
+                    theme: theme === "dark" ? t("settings.appearance.dark") : t("settings.appearance.light"),
+                  })}
                 </p>
               </div>
               <ThemeToggle />
             </div>
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium">Language</p>
-                <p className="text-sm text-muted">Switch interface language.</p>
+                <p className="font-medium">{t("settings.appearance.language")}</p>
+                <p className="text-sm text-muted">{t("settings.appearance.languageDesc")}</p>
               </div>
-              <button
-                type="button"
-                className="px-4 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-sm text-slate-900 dark:text-white hover:bg-black/10 dark:hover:bg-white/10 transition"
+              <select
+                value={language}
+                onChange={(e) => handleLanguageChange(e.target.value)}
+                className="px-3 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-sm text-slate-900 dark:text-white hover:bg-black/10 dark:hover:bg-white/10 transition"
               >
-                Change language
-              </button>
+                {languageOptions.map((opt) => (
+                  <option key={opt.code} value={opt.code}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
